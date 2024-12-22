@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<giftbox.Data.Employee>
+<div class="text-center">
+    <h1 class="display-4">Welcome to Mediasoft</h1>
+    <p>Gift box opening</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.Name</td>
+                    <td>@x.OwnGiftNo</td>
+                    <td>@x.ReceiveGiftNo</td>
+                    <td>@x.IsGifted</td>
+                    <td>@x.IsReceived</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
