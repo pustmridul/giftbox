@@ -22,15 +22,19 @@ namespace giftbox.Controllers
             return View(employees);
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Lottery()
         {
-            return View();
+            var randomEmployee = await _context.Employees
+                                               .OrderBy(e => Guid.NewGuid())  // Randomize the list
+                                               .FirstOrDefaultAsync();        // Get the first one
+
+            if (randomEmployee == null)
+            {
+                return NotFound("No employees found.");
+            }
+
+            return Json(randomEmployee); // Return as JSON to be used in the frontend
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
